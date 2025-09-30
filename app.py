@@ -1,5 +1,4 @@
 from flask import Flask, render_template, request, redirect
-import os
 import mysql.connector
 
 app = Flask(__name__)
@@ -52,8 +51,3 @@ def delete(book_id):
     cursor.close()
     return redirect("/")
 
-
-
-if __name__ == "__main__":
-    from waitress import serve
-    serve(app, host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
