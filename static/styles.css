@@ -1,0 +1,20 @@
+.btn-gradient {
+  background-size: 200% auto;
+  background: linear-gradient(90deg, #14b8a6, #06b6d4);
+  border: none;
+  transition: all 0.4s ease-in-out;
+}
+
+.btn-gradient:hover {
+  background: linear-gradient(90deg, #17b6a3, #0aa5c1);
+  transform: scale(1.01);
+}
+
+.modern-container {
+  max-width: 900px;
+  margin: 40px auto;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}

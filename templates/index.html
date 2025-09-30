@@ -1,0 +1,104 @@
+{% extends "layout.html" %} {% block content %}
+
+<h2 class="mt-2 mb-2 text-center fw-bold">📖 Library Books</h2>
+<p class="text-muted text-center mb-4">
+  Manage your books collection - add, track & organize.
+</p>
+
+<!-- Add Book Form -->
+<form
+  action="/add"
+  method="POST"
+  class="row g-3 mb-4"
+>
+  <div class="col-md-5">
+    <input
+      type="text"
+      name="title"
+      class="form-control rounded-3"
+      placeholder="Book Title"
+      required
+      autofocus
+    />
+  </div>
+  <div class="col-md-5">
+    <input
+      type="text"
+      name="author"
+      class="form-control rounded-3"
+      placeholder="Author"
+      required
+    />
+  </div>
+
+  <div class="col-md-2">
+    <select
+      name="status"
+      class="form-select rounded-3"
+      required
+    >
+      <option
+        value="status"
+        selected
+        disabled
+      >
+        Status
+      </option>
+      <option value="available">Available</option>
+      <option value="issued">Issued</option>
+    </select>
+  </div>
+
+  <div class="col-12">
+    <button
+      type="submit"
+      class="btn w-100 rounded-3 text-white fw-semibold btn-gradient"
+    >
+      <i class="bi bi-plus-lg"></i> Add Book
+    </button>
+  </div>
+</form>
+
+<!-- Book List -->
+<table class="table table-striped align-middle shadow-sm rounded">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Title</th>
+      <th>Author</th>
+      <th>Status</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for book in books %}
+    <tr>
+      <td>{{ loop.index }}</td>
+      <td>{{ book.title }}</td>
+      <td>{{ book.author }}</td>
+      <td>
+        {% if book.status == "available" %}
+        <span class="badge bg-success">Available</span>
+        {% else %}
+        <span class="badge bg-danger">Issued</span>
+        {% endif %}
+      </td>
+      <td>
+        <form
+          action="/delete/{{ book.id }}"
+          method="POST"
+        >
+          <button
+            type="submit"
+            class="btn btn-outline-danger btn-sm rounded-3"
+          >
+            <i class="bi bi-trash"></i>
+          </button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}
